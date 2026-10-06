@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aplikasi Guru Hebat Pembuat Perangkat Pembelajaran — v12</title>
+<style>
+:root{--primary:#0b5cab;--secondary:#0b7a53;--soft:#eef5fb;--line:#d8e0e8;--danger:#b42318;--ink:#17202a}
+*{box-sizing:border-box}body{margin:0;font-family:Calibri,Arial,sans-serif;background:#f4f7fa;color:var(--ink)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+
+label{font-weight:700;font-size:13px;display:block;margin:12px 0 6px}.field{width:100%;border:1px solid #cbd5e1;border-radius:9px;padding:10px 11px;background:white}.field:focus{outline:3px solid #0b5cab20;border-color:var(--primary)}
+.btn{border:0;border-radius:9px;padding:10px 14px;font-weight:700}.btn-primary{background:var(--primary);color:#fff}.btn-green{background:var(--secondary);color:#fff}.btn-light{background:#eef2f6;color:#223}.btn-danger{background:#fee4e2;color:var(--danger)}.btn-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.btn-full{width:100%;margin-top:16px}.small{text-align:center;font-size:12px;color:#6b7280}.credit{font-size:12px;color:#64748b;text-align:center;margin:28px 0 8px}
+.home-hero{background:linear-gradient(135deg,#ffffff,#eef6ff);border:1px solid var(--line);border-radius:20px;padding:30px 24px;text-align:center;box-shadow:0 10px 30px #17324d0d}
+.home-logos{display:flex;justify-content:center;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:18px}.home-logos img{height:72px;width:72px;object-fit:contain}.home-logos .logo-km{width:170px;height:72px;object-fit:contain}
+.home-hero h1{font-size:clamp(24px,3.2vw,38px);line-height:1.15;margin:10px auto 8px;color:#173b72}.home-hero p{max-width:850px;margin:8px auto;color:#5b6b7c;font-size:16px}
+.home-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:22px}.home-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}.home-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px;text-align:left;box-shadow:0 6px 18px #17324d0a}.home-card .icon{font-size:28px}.home-card h3{margin:8px 0 5px}.home-card p{margin:0;color:#64748b;font-size:14px;line-height:1.5}.home-note{margin-top:16px;background:#f7fafc;border-left:4px solid var(--primary);padding:12px;border-radius:8px;text-align:left;font-size:13px;color:#475569}
+@media(max-width:850px){.home-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.home-grid{grid-template-columns:1fr}.home-hero{padding:22px 14px}.home-logos img{height:58px;width:58px}.home-logos .logo-km{width:145px;height:58px}}
+.app{display:block;min-height:100vh}.topbar{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);padding:12px 18px;display:flex;align-items:center;gap:14px}.brand{font-weight:900;color:var(--primary);font-size:18px}.topbar .grow{flex:1}.shell{display:grid;grid-template-columns:245px 1fr;min-height:calc(100vh - 65px)}.side{background:#fff;border-right:1px solid var(--line);padding:14px;position:sticky;top:65px;height:calc(100vh - 65px);overflow:auto}.nav{width:100%;text-align:left;background:#fff;border:0;padding:11px 12px;border-radius:8px;margin-bottom:5px;font-weight:700;color:#475569}.nav.active,.nav:hover{background:var(--soft);color:var(--primary)}.main{padding:22px;max-width:1500px;width:100%;margin:auto}.panel{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px;margin-bottom:18px}.panel h2{margin:0 0 5px}.muted{color:#64748b}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.full{grid-column:1/-1}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.checkgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.check{border:1px solid var(--line);padding:9px;border-radius:8px;background:#fafcff}.check input{margin-right:6px}.result{display:none}.doc{font-family:Calibri,Arial,sans-serif;font-size:12pt;color:#000;line-height:1.45;background:#fff;min-height:500px;padding:28px}.doc h1,.doc h2,.doc h3{color:#000}.doc h1{text-align:center;font-size:18pt}.doc h2{font-size:14pt;border-bottom:1px solid #bbb;padding-bottom:3px}.doc h3{font-size:12pt}.doc table{width:100%;border-collapse:collapse;margin:10px 0}.doc td,.doc th{border:1px solid #777;padding:6px;vertical-align:top}.doc .center{text-align:center}.doc .teacher,.doc .principal{font-weight:700}.source{font-style:italic;text-decoration:none}.signature{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:50px;text-align:center}.sourcebox{background:#f7fafc;border-left:4px solid var(--primary);padding:10px;margin-top:12px;font-size:11px}.notice{background:#fff8e8;border:1px solid #f6d88b;padding:10px;border-radius:8px;font-size:13px}.promptbox{width:100%;min-height:520px;font-family:Consolas,monospace;font-size:12px;line-height:1.45;border:1px solid #cbd5e1;border-radius:10px;padding:14px;background:#fbfdff}.sourcegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.sourcecard{border:1px solid var(--line);border-radius:10px;padding:11px;background:#fbfdff}.sourcecard a{color:var(--primary);font-weight:700;text-decoration:none}.status-ok{color:#087443;font-weight:700}.status-warn{color:#9a6700;font-weight:700}.hide{display:none!important}.onlinebar{border:1px solid #b9d7ff;background:#f3f8ff;border-radius:12px;padding:12px;margin:12px 0}.online-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#94a3b8;margin-right:6px}.online-dot.ok{background:#16a34a}.online-dot.bad{background:#dc2626}.source-result{font-size:12px;line-height:1.45;margin-top:10px}.source-result .src{padding:8px;border:1px solid #e2e8f0;border-radius:8px;margin:6px 0;background:#fff}
+@media(max-width:850px){.shell{grid-template-columns:1fr}.side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);display:flex;overflow:auto;gap:5px}.nav{min-width:max-content}.grid{grid-template-columns:1fr}.checkgrid{grid-template-columns:1fr 1fr}.main{padding:12px}.signature{grid-template-columns:1fr}.topbar{flex-wrap:wrap}}
+@media print{.topbar,.side,.no-print{display:none!important}.shell{display:block}.main{padding:0}.panel{border:0;padding:0}.doc{padding:15mm;min-height:0}@page{size:A4;margin:0}}
+</style>
+</head>
+<body>
+
+<section id="appPage" class="app">
+<header class="topbar">
+  <div class="brand">📘 Aplikasi Guru Hebat Pembuat Perangkat Pembelajaran</div>
+  <div class="grow"></div><span class="muted">Pembelajaran Mendalam • Offline & Online</span>
+</header>
+<div class="shell">
+<aside class="side">
+  <button class="nav active" data-tab="home" onclick="showTab('home')">🏠 Beranda</button>
+  <button class="nav" data-tab="input" onclick="showTab('input')">📝 Input Data</button>
+  <button class="nav" data-tab="modul" onclick="showTab('modul')">📘 Modul Ajar / RPP</button>
+  <button class="nav" data-tab="bahan" onclick="showTab('bahan')">📚 Bahan Ajar</button>
+  <button class="nav" data-tab="lkpd" onclick="showTab('lkpd')">📄 LKPD</button>
+  <button class="nav" data-tab="soal" onclick="showTab('soal')">🧩 Kisi-kisi & Soal</button>
+  <button class="nav" data-tab="mpi" onclick="showTab('mpi')">🖥️ MPI Interaktif</button>
+  <button class="nav" data-tab="prompt" onclick="showTab('prompt');generatePrompt()">🪄 Prompt OpenAI</button>
+</aside>
+
+<main class="main">
+
+<section id="tab-home" class="tab panel">
+  <div class="home-hero">
+    <div class="home-logos">
+      <img src="assets/logo-diknas.png" alt="Logo pendidikan">
+      <img src="assets/logo-kurikulum-merdeka.png" class="logo-km" alt="Logo Kurikulum Merdeka">
+      <img src="assets/logo-barito-selatan.png" alt="Logo Barito Selatan">
+    </div>
+    <h1>SELAMAT DATANG DI APLIKASI GURU HEBAT</h1>
+    <p><b>PEMBUAT PERANGKAT PEMBELAJARAN</b></p>
+    <p>Rancang, kembangkan, validasi, dan siapkan perangkat pembelajaran dalam satu alur yang sederhana, konsisten, dan mudah digunakan.</p>
+    <div class="home-actions">
+      <button class="btn btn-primary" onclick="showTab('input')">📝 Mulai Input Data</button>
+      <button class="btn btn-green" onclick="showTab('prompt');generatePrompt()">🪄 Buat Prompt OpenAI</button><button class="btn btn-primary" onclick="showTab('prompt');generatePrompt();generateOnlineAI()">🤖 Eksekusi Online</button>
+    </div>
+  </div>
+  <div class="home-grid">
+    <div class="home-card"><div class="icon">📝</div><h3>Input Data</h3><p>Masukkan identitas guru, sekolah, materi, submateri, TP, alokasi waktu, fasilitas, dan data kepala sekolah.</p></div>
+    <div class="home-card"><div class="icon">📘</div><h3>Perangkat Pembelajaran</h3><p>Bangun Modul Ajar/RPP, Bahan Ajar, LKPD, serta Kisi-kisi dan Soal dari data pembelajaran yang sama.</p></div>
+    <div class="home-card"><div class="icon">🖥️</div><h3>MPI Interaktif</h3><p>Siapkan media pembelajaran interaktif HTML yang responsif untuk HP, tablet, laptop, dan PID.</p></div>
+    <div class="home-card"><div class="icon">🔎</div><h3>Sumber Resmi</h3><p>Prompt memprioritaskan regulasi dan sumber resmi Kemendikdasmen, Rumah Pendidikan, Ruang GTK, SIBI, serta sumber pendukung yang relevan.</p></div>
+    <div class="home-card"><div class="icon">🔗</div><h3>Satu Ekosistem</h3><p>IDENTITAS → CP → TP → ATP → MATERI → KEGIATAN → ASESMEN → BAHAN AJAR → LKPD → SOAL → MPI.</p></div>
+    <div class="home-card"><div class="icon">⚡</div><h3>Eksekusi Langsung</h3><p>Master Prompt memerintahkan AI untuk mengeksekusi hasil tanpa bertanya kembali dan tetap menjaga validasi sumber.</p></div>
+  </div>
+  <div class="home-note"><b>Catatan:</b> Pada mode offline, aplikasi tidak mengklaim melakukan sinkronisasi sumber secara live. Prompt OpenAI membawa aturan validasi sumber agar proses online/backend dapat memeriksa sumber resmi secara nyata.</div>
+  <p class="credit">Aplikasi ini dibuat oleh Al-Faqir Syaifulah, S.Pd.I</p>
+</section>
+
+<section id="tab-input" class="tab panel">
+<h2>Input Identitas & Rancangan Pembelajaran</h2>
+<p class="muted">Isi data utama. Aplikasi akan membangun perangkat pembelajaran secara otomatis berdasarkan data yang dimasukkan.</p>
+<div class="notice"><b>Mesin Sinkronisasi:</b> TP tetap diinput guru. CP/ATP, materi, dan sumber belajar akan dianalisis oleh AI berdasarkan sumber resmi yang dapat diverifikasi. Pada mode offline, aplikasi tidak mengklaim melakukan sinkronisasi live; tombol <b>Prompt OpenAI</b> menghasilkan prompt terstruktur yang siap ditempel ke ChatGPT/OpenAI dengan instruksi verifikasi sumber.</div>
+<div class="grid">
+<div><label>1. Nama Guru *</label><input id="guru" class="field"></div>
+<div><label>2. NIP</label><input id="nip" class="field"></div>
+<div><label>3. Nama Sekolah *</label><input id="sekolah" class="field"></div>
+<div><label>4. Mata Pelajaran *</label><input id="mapel" class="field" placeholder="Contoh: Pendidikan Agama Islam"></div>
+<div><label>5. Kelas / Fase / Semester *</label><input id="kelas" class="field" placeholder="Contoh: IV / B / 1"></div>
+<div><label>6. Materi Pembelajaran *</label><input id="materi" class="field" placeholder="Contoh: QS. Al-Hujurat ayat 13"></div>
+<div><label>7. Sub Materi Pembelajaran *</label><input id="submateri" class="field" placeholder="Contoh: Kandungan ayat dan penerapannya"></div>
+<div class="full"><label>8. Tujuan Pembelajaran (TP) *</label><textarea id="tp" class="field" rows="4" placeholder="Tuliskan TP yang ingin dicapai. Satu TP per baris."></textarea></div>
+<div><label>9. Alokasi Waktu *</label><input id="alokasi" class="field" placeholder="Contoh: 2 x 35 menit"></div>
+<div><label>10. Murid Berkebutuhan Khusus</label><textarea id="mbk" class="field" rows="2" placeholder="Tuliskan kebutuhan/dukungan atau 'Tidak ada'"></textarea></div>
+<div class="full"><label>11. Media / Fasilitas yang Tersedia</label><textarea id="fasilitas" class="field" rows="2" placeholder="Contoh: papan tulis, LCD/PID, internet, buku teks, lingkungan sekolah"></textarea></div>
+<div><label>12. Pendekatan Pembelajaran *</label>
+<select id="pendekatan" class="field">
+<option>Pembelajaran Mendalam (Deep Learning)</option><option>Mindful – Meaningful – Joyful</option><option>Project Based Learning (PjBL)</option><option>Problem Based Learning (PBL)</option><option>Inquiry Learning</option><option>Discovery Learning</option><option>Cooperative Learning</option>
+</select></div>
+<div><label>Jenis Soal</label>
+<select id="jenisSoal" class="field"><option>Pilihan Ganda</option><option>Isian Singkat</option><option>Uraian</option><option>Benar-Salah</option><option>Menjodohkan</option></select></div>
+<div><label>Jumlah Soal</label><input id="jumlahSoal" class="field" type="number" min="1" max="30" value="10"></div>
+<div><label>13. Kepala Sekolah *</label><input id="kepala" class="field"></div>
+<div><label>14. NIP Kepala Sekolah</label><input id="nipKepala" class="field"></div>
+<div><label>15. Tempat Pembuatan</label><input id="tempat" class="field" placeholder="Contoh: Buntok"></div>
+<div><label>16. Tanggal Pembuatan</label><input id="tanggal" class="field" type="date"></div>
+<div class="full"><div class="notice"><b>Pencocokan CP & ATP:</b> TP diinput manual oleh guru. Pada versi offline ini, aplikasi menampilkan status bahwa CP/ATP akan dicocokkan melalui sumber resmi saat modul online/backend diaktifkan. Aplikasi tidak mengklaim mengambil data Rumah Pendidikan secara live ketika offline.</div></div>
+</div>
+<div class="actions">
+<button class="btn btn-light" onclick="resetForm()">Reset Input</button>
+<button class="btn btn-primary" onclick="generateAll()">✨ Buat Perangkat</button>
+<button class="btn btn-green" onclick="saveInputs()">💾 Simpan Input</button>
+<button class="btn btn-light" onclick="showTab('prompt');generatePrompt()">🪄 Generate Prompt OpenAI</button>
+<button class="btn btn-light" onclick="openSources()">🔗 Sumber Resmi</button>
+</div>
+</section>
+
+<section id="tab-modul" class="tab panel result"><div class="actions no-print"><button class="btn btn-light" onclick="copyDoc('modulDoc')">Salin</button><button class="btn btn-light" onclick="printDoc('modulDoc')">Cetak</button><button class="btn btn-green" onclick="downloadDocx('modulDoc','Modul_Ajar_RPP')">Simpan DOCX</button><button class="btn btn-light" onclick="promptFor('modul')">🪄 Prompt OpenAI</button></div><div id="modulDoc" class="doc"></div></section>
+<section id="tab-bahan" class="tab panel result"><div class="actions no-print"><button class="btn btn-light" onclick="copyDoc('bahanDoc')">Salin</button><button class="btn btn-light" onclick="printDoc('bahanDoc')">Cetak</button><button class="btn btn-green" onclick="downloadDocx('bahanDoc','Bahan_Ajar')">Simpan DOCX</button><button class="btn btn-light" onclick="promptFor('bahan')">🪄 Prompt OpenAI</button></div><div id="bahanDoc" class="doc"></div></section>
+<section id="tab-lkpd" class="tab panel result"><div class="actions no-print"><button class="btn btn-light" onclick="copyDoc('lkpdDoc')">Salin</button><button class="btn btn-light" onclick="printDoc('lkpdDoc')">Cetak</button><button class="btn btn-green" onclick="downloadDocx('lkpdDoc','LKPD')">Simpan DOCX</button><button class="btn btn-light" onclick="promptFor('lkpd')">🪄 Prompt OpenAI</button></div><div id="lkpdDoc" class="doc"></div></section>
+<section id="tab-soal" class="tab panel result"><div class="actions no-print"><button class="btn btn-light" onclick="copyDoc('soalDoc')">Salin</button><button class="btn btn-light" onclick="printDoc('soalDoc')">Cetak</button><button class="btn btn-green" onclick="downloadDocx('soalDoc','Kisi_Kisi_dan_Soal')">Simpan DOCX</button><button class="btn btn-light" onclick="promptFor('soal')">🪄 Prompt OpenAI</button></div><div id="soalDoc" class="doc"></div></section>
+<section id="tab-mpi" class="tab panel result"><div class="actions no-print"><button class="btn btn-green" onclick="downloadMPI()">Simpan MPI HTML</button><button class="btn btn-light" onclick="openMPI()">Buka MPI</button><button class="btn btn-light" onclick="promptFor('mpi')">🪄 Prompt OpenAI</button></div><div id="mpiDoc"></div></section>
+
+<section id="tab-prompt" class="tab panel">
+<h2>🪄 Prompt OpenAI — Master Prompt Perangkat Pembelajaran</h2>
+<p class="muted">Prompt ini membawa seluruh identitas dan rancangan pembelajaran dari Tab Input Identitas. Salin ke ChatGPT/OpenAI untuk menghasilkan perangkat yang lebih lengkap dan tersinkron.</p>
+<div class="grid">
+<div><label>Jenis perangkat</label><select id="promptTarget" class="field" onchange="generatePrompt()"><option value="all">Semua perangkat</option><option value="modul">Modul Ajar / Kegiatan Intrakurikuler</option><option value="bahan">Bahan Ajar</option><option value="lkpd">LKPD</option><option value="soal">Kisi-kisi & Soal</option><option value="mpi">Media Pembelajaran Interaktif (HTML)</option></select></div>
+<div><label>Mode keluaran</label><select id="promptMode" class="field" onchange="generatePrompt()"><option>Lengkap dan siap digunakan</option><option>Ringkas tetapi tetap terstruktur</option><option>Analisis dan validasi terlebih dahulu</option></select></div>
+<div class="full"><div class="notice"><b>Prioritas sumber:</b> regulasi terbaru → Rumah Pendidikan/Ruang GTK → CP/ATP → Sumber Belajar → katalog buku resmi/SIBI → SIAP/Puskesjar dan sumber resmi kementerian lain yang relevan. AI wajib memverifikasi sumber dan dilarang mengarang CP, ATP, buku, regulasi, atau URL.</div></div>
+<div class="full"><textarea id="promptOutput" class="promptbox" spellcheck="false"></textarea></div>
+</div>
+<div class="actions no-print">
+<button class="btn btn-primary" onclick="copyPrompt()">📋 Salin Prompt</button>
+<button class="btn btn-green" onclick="downloadPrompt()">⬇️ Simpan TXT</button>
+<button class="btn btn-light" onclick="generatePrompt()">🔄 Perbarui Prompt</button>
+<button class="btn btn-primary" onclick="validateOfficialSources()">🔎 Validasi Sumber Resmi</button>
+<button class="btn btn-green" onclick="generateOnlineAI()">🤖 Eksekusi dengan OpenAI</button>
+</div>
+<div class="onlinebar"><b>Mode Online:</b> <span id="onlineStatus"><span class="online-dot"></span>memeriksa koneksi backend...</span><br><small>API key OpenAI disimpan hanya di backend, bukan di browser. Mesin validasi memeriksa sumber yang diizinkan sebelum AI dijalankan.</small></div>
+<div id="sourceValidation" class="source-result"></div>
+<div id="onlineOutput" class="doc" style="display:none;margin-top:12px"></div>
+<h3>Daftar sumber resmi yang akan diperiksa oleh AI</h3>
+<div class="sourcegrid">
+<div class="sourcecard"><b>Rumah Pendidikan</b><br><span class="status-ok">Prioritas utama</span><br><a href="https://rumah.pendidikan.go.id/" target="_blank" rel="noopener">rumah.pendidikan.go.id</a><br><small>Ekosistem layanan digital Kemendikdasmen.</small></div>
+<div class="sourcecard"><b>Ruang GTK</b><br><span class="status-ok">Prioritas utama</span><br><a href="https://guru.kemendikdasmen.go.id/" target="_blank" rel="noopener">guru.kemendikdasmen.go.id</a><br><small>Perangkat ajar, CP/ATP, asesmen, pelatihan, dan referensi GTK.</small></div>
+<div class="sourcecard"><b>Ruang Murid</b><br><span class="status-ok">Sumber belajar murid</span><br><a href="https://rumah.pendidikan.go.id/" target="_blank" rel="noopener">Akses melalui Rumah Pendidikan</a><br><small>Ruang belajar digital gratis dan interaktif.</small></div>
+<div class="sourcecard"><b>SIBI / Buku resmi</b><br><span class="status-ok">Rujukan buku</span><br><a href="https://buku.kemendikdasmen.go.id/" target="_blank" rel="noopener">buku.kemendikdasmen.go.id</a><br><small>Katalog dan buku digital resmi.</small></div>
+<div class="sourcecard"><b>PMM / transformasi ke Ruang GTK</b><br><span class="status-warn">Rujukan historis & transisi</span><br><a href="https://guru.kemendikdasmen.go.id/" target="_blank" rel="noopener">Akses layanan guru</a><br><small>PMM telah bertransformasi menjadi Ruang GTK.</small></div>
+<div class="sourcecard"><b>SIAP Online</b><br><span class="status-warn">Sumber pendukung</span><br><a href="https://siap-online.com/" target="_blank" rel="noopener">siap-online.com</a><br><small>Layanan pendidikan oleh Telkom; bukan sumber utama regulasi/CP.</small></div>
+<div class="sourcecard"><b>Puskesjar</b><br><span class="status-warn">Verifikasi saat digunakan</span><br><a href="https://puskesjar.kemdikbud.go.id/" target="_blank" rel="noopener">puskesjar.kemdikbud.go.id</a><br><small>Digunakan hanya jika halaman/dokumen dapat diverifikasi.</small></div>
+<div class="sourcecard"><b>Regulasi Kemendikdasmen</b><br><span class="status-ok">Validasi kebijakan</span><br><a href="https://www.kemendikdasmen.go.id/" target="_blank" rel="noopener">kemendikdasmen.go.id</a><br><small>Peraturan, kebijakan, dan berita resmi kementerian.</small></div>
+</div>
+</section>
+
+
+
+</main></div></section>
+
+<script>
+let state = {};
+function showTab(t){document.querySelectorAll(".tab").forEach(x=>x.style.display="none");document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));const tab=document.getElementById("tab-"+t);const nav=document.querySelector('.nav[data-tab="'+t+'"]');if(!tab||!nav)return;tab.style.display="block";nav.classList.add("active")}
+function val(id){return document.getElementById(id).value.trim()}
+function escapeHtml(s){
+  return String(s||"").replace(/[&<>"']/g,function(m){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m];
+  });
+}
+
+
+function resetForm(){document.querySelectorAll("#tab-input input,#tab-input textarea").forEach(e=>{if(e.type!=="date")e.value=""});document.getElementById("tanggal").value=new Date().toISOString().slice(0,10);document.getElementById("jumlahSoal").value=10;document.getElementById("pendekatan").selectedIndex=0;document.getElementById("jenisSoal").selectedIndex=0}
+function base(){return {guru:val("guru"),nip:val("nip"),sekolah:val("sekolah"),mapel:val("mapel"),kelas:val("kelas"),materi:val("materi"),submateri:val("submateri"),tp:val("tp"),alokasi:val("alokasi"),mbk:val("mbk")||"Tidak ada",fasilitas:val("fasilitas")||"Disesuaikan dengan kondisi sekolah",pendekatan:val("pendekatan"),jenis:val("jenisSoal"),jumlah:Math.max(1,Math.min(30,parseInt(val("jumlahSoal")||10))),kepala:val("kepala"),nipKepala:val("nipKepala"),tempat:val("tempat"),tanggal:val("tanggal")||new Date().toISOString().slice(0,10),appVersion:"16.0"}}
+function sourcePolicy(){return `MESIN VALIDASI SUMBER RESMI — WAJIB DIIKUTI
+A. PRIORITAS TERTINGGI — SUMBER UTAMA
+1. Regulasi terbaru Kemendikdasmen: https://www.kemendikdasmen.go.id/ dan JDIH/portal resmi kementerian yang relevan.
+2. Rumah Pendidikan: https://rumah.pendidikan.go.id/ — ekosistem layanan digital Kemendikdasmen.
+3. Ruang GTK: https://guru.kemendikdasmen.go.id/ — perangkat ajar, CP/ATP, asesmen, ide praktik, pelatihan, dan dokumen rujukan.
+4. Sumber Belajar/Ruang Murid dalam ekosistem Rumah Pendidikan — gunakan untuk memperkaya materi dan aktivitas belajar murid.
+5. SIBI/Buku resmi: https://buku.kemendikdasmen.go.id/ — verifikasi judul buku, penulis, jenjang, dan metadata yang tersedia.
+B. SUMBER PENDUKUNG
+6. PMM: PMM telah bertransformasi menjadi Ruang GTK; dokumen lama PMM hanya digunakan sebagai referensi historis/transisi setelah diverifikasi.
+7. Puskesjar: https://puskesjar.kemdikbud.go.id/ — gunakan hanya jika halaman/dokumen dapat diakses dan relevan.
+8. SIAP Online: https://siap-online.com/ — layanan pendidikan oleh Telkom Indonesia; bukan sumber utama untuk menetapkan CP, ATP, regulasi, atau kebijakan Kemendikdasmen.
+C. ATURAN BOBOT SUMBER
+- CP: utamakan CP resmi dalam ekosistem Kemendikdasmen/Ruang GTK.
+- ATP: bedakan ATP resmi, ATP adaptasi, dan ATP hasil pengembangan AI.
+- Regulasi: utamakan dokumen/peraturan resmi kementerian/JDIH.
+- Buku: utamakan SIBI/Buku resmi.
+- Bahan belajar: dapat diperkaya dari Ruang Murid/Sumber Belajar dan sumber resmi lain yang relevan.
+- SIAP/Puskesjar/PMM tidak boleh menggantikan sumber utama bila informasi yang sama tersedia dari sumber kementerian yang lebih berwenang.
+D. KEJUJURAN SUMBER
+Jangan mengarang CP, ATP, regulasi, judul buku, penulis, ISBN, nomor peraturan, tanggal, URL, kutipan, atau isi halaman. Jangan mengklaim telah membuka/memeriksa laman jika akses/verifikasi tidak tersedia. Jika data tidak ditemukan atau tidak dapat diverifikasi, tulis [BELUM TERVERIFIKASI]. Bedakan [SUMBER RESMI], [SUMBER PENDUKUNG], [ADAPTASI], dan [PENGEMBANGAN AI].` }
+function promptData(d){return `IDENTITAS GURU\nNama Guru: ${d.guru}\nNIP: ${d.nip||"-"}\nSekolah: ${d.sekolah}\nMata Pelajaran: ${d.mapel}\nKelas/Fase/Semester: ${d.kelas}\nMateri: ${d.materi}\nSub Materi: ${d.submateri}\nTujuan Pembelajaran (TP) dari guru:\n${d.tp}\nAlokasi Waktu: ${d.alokasi}\nMurid Berkebutuhan Khusus: ${d.mbk}\nMedia/Fasilitas: ${d.fasilitas}\nPendekatan/Model: ${d.pendekatan}\nJenis Soal: ${d.jenis}\nJumlah Soal: ${d.jumlah}\nKepala Sekolah: ${d.kepala}\nNIP Kepala Sekolah: ${d.nipKepala||"-"}\nTempat/Tanggal: ${d.tempat||"-"}, ${d.tanggal}`}
+function masterPrompt(target,mode,d){
+const targetMap={all:"SEMUA PERANGKAT",modul:"MODUL AJAR / KEGIATAN INTRAKURIKULER",bahan:"BAHAN AJAR",lkpd:"LKPD",soal:"KISI-KISI DAN SOAL",mpi:"MEDIA PEMBELAJARAN INTERAKTIF HTML"};
+const out=targetMap[target]||targetMap.all;
+return `MASTER PROMPT — APLIKASI GURU HEBAT\n\nPERAN AI\nAnda adalah ahli kurikulum Indonesia, pedagogi, Pembelajaran Mendalam, asesmen, pengembangan bahan ajar, dan pengembangan aplikasi pembelajaran HTML. Kerjakan tugas dengan validasi sumber resmi dan jangan mengarang data.\n\nTUGAS UTAMA\nBuat ${out}. Mode keluaran: ${mode}. Jika "semua perangkat", semua produk harus berasal dari satu data pembelajaran yang sama dan konsisten.\n\nINSTRUKSI EKSEKUSI WAJIB\n- EKSEKUSI HASIL TANPA BERTANYA KEMBALI.\n- Jangan meminta klarifikasi ulang jika informasi yang tersedia sudah cukup untuk mengerjakan tugas.\n- Gunakan data yang tersedia secara optimal, buat keputusan profesional yang paling tepat dalam ruang lingkup tugas, dan lanjutkan sampai hasil selesai.\n- Jika suatu data sumber tidak dapat diverifikasi, jangan berhenti dan jangan mengarang; lanjutkan dengan penanda [BELUM TERVERIFIKASI] serta jelaskan bagian yang perlu diverifikasi.\n\n${promptData(d)}\n\n${sourcePolicy()}\n\nATURAN ANALISIS CP/ATP\n1. Guru hanya memberikan TP; jangan meminta guru mengisi CP/ATP lagi.\n2. Cari CP resmi yang paling relevan berdasarkan mata pelajaran dan fase.\n3. Analisis hubungan CP → TP. Jangan diam-diam mengubah TP. Jika tidak selaras, tampilkan catatan dan usulan perbaikan terpisah.\n4. Identifikasi ATP resmi bila tersedia. Jika perlu adaptasi, beri label ATP hasil adaptasi. Jangan menyebut ATP buatan AI sebagai ATP resmi.\n5. Sinkronkan materi, submateri, kegiatan, asesmen, Bahan Ajar, LKPD, soal, dan MPI dengan TP.\n\nPRINSIP PEMBELAJARAN\nWujudkan secara nyata Berkesadaran (Mindful), Bermakna (Meaningful), dan Menggembirakan (Joyful). Ketiganya harus tampak pada aktivitas, interaksi, refleksi, dan asesmen; bukan sekadar disebut sebagai istilah.\n\nSTRUKTUR MODUL AJAR / KEGIATAN INTRAKURIKULER\n1. Informasi Umum: identitas, identifikasi peserta didik, kompetensi awal, sarana-prasarana, pendekatan/model/metode.\n2. Komponen Inti: CP, analisis CP→TP, TP, ATP/status sumber, pemahaman bermakna, pertanyaan pemantik, materi, kompetensi/karakter sesuai regulasi.\n3. Desain Pembelajaran Mendalam.\n4. Kegiatan: pendahuluan, inti sesuai model, penutup.\n5. Diferensiasi bila relevan.\n6. Asesmen diagnostik, formatif, sumatif, instrumen dan rubrik.\n7. KKTP/kriteria ketercapaian berbasis bukti belajar.\n8. Pengayaan dan remedial.\n9. Refleksi murid dan guru.\n10. Glosarium.\n11. Daftar pustaka/sumber terverifikasi.\n\nBAHAN AJAR\nHarus konsisten dengan CP→TP→materi→aktivitas→asesmen. Sertakan tujuan, peta konsep, materi inti, contoh kontekstual, aktivitas, rangkuman, refleksi, latihan, dan sumber resmi.\n\nLKPD\nHarus langsung mendukung kegiatan dan TP. Sertakan identitas, tujuan, petunjuk, stimulus, aktivitas, tugas, ruang jawaban, kesimpulan, refleksi, dan rubrik bila diperlukan.\n\nKISI-KISI DAN SOAL\nKisi-kisi harus memuat materi, indikator, level kognitif/kompetensi, bentuk soal, nomor, dan keterkaitan TP. Soal harus benar-benar mengukur TP. Sertakan kunci dan pedoman penskoran/rubrik.\n\nMPI HTML\nBuat rancangan sekaligus kode HTML mandiri yang dapat berjalan offline dan online pada HP, tablet, laptop, dan PID/PC. Gunakan HTML+CSS+JavaScript tanpa dependensi CDN untuk fungsi dasar. Selaraskan TP→materi→interaksi→kuis/asesmen→umpan balik→refleksi. Responsif, ramah anak, aksesibel, dan dapat disimpan sebagai satu file .html. Jangan menanam API key.\n\nDOKUMEN WORD\nUntuk naskah Word: ukuran A4, editable, rapi, font utama Calibri 12, teks hitam, heading konsisten, tabel tidak terpotong, nama guru dan kepala sekolah tebal, sumber/catatan sumber miring tanpa underline, siap cetak. Jangan menampilkan placeholder, kode, atau instruksi internal AI. Bagian sampul tidak perlu dibuat kecuali diminta.\n\nATURAN KEJUJURAN\nBedakan label [SUMBER RESMI], [ADAPTASI], dan [PENGEMBANGAN AI]. Jika suatu data tidak dapat diverifikasi, tulis "BELUM TERVERIFIKASI". Jangan membuat URL atau referensi fiktif.\n\nVALIDASI SEBELUM FINAL\nPeriksa identitas, fase, CP, TP, ATP, materi, kegiatan, asesmen, diferensiasi, remedial, pengayaan, Mindful-Meaningful-Joyful, sumber, Bahan Ajar, LKPD, soal, dan MPI. Pastikan tidak ada komponen yang bertentangan.\n\nFORMAT HASIL\nEksekusi hasil tanpa bertanya kembali.\nMulai dengan Ringkasan Analisis dan Status Validasi Sumber. Setelah itu tampilkan produk yang diminta secara lengkap dan siap digunakan. Jangan tampilkan proses berpikir internal.`}
+function saveInputs(){localStorage.setItem("gh_inputs",JSON.stringify(base()));alert("Data input tersimpan di perangkat ini.")}
+function loadInputs(){try{const d=JSON.parse(localStorage.getItem("gh_inputs")||"null");if(!d)return;const map={guru:"guru",nip:"nip",sekolah:"sekolah",mapel:"mapel",kelas:"kelas",materi:"materi",submateri:"submateri",tp:"tp",alokasi:"alokasi",mbk:"mbk",fasilitas:"fasilitas",pendekatan:"pendekatan",jenis:"jenisSoal",jumlah:"jumlahSoal",kepala:"kepala",nipKepala:"nipKepala",tempat:"tempat",tanggal:"tanggal"};Object.entries(map).forEach(([k,id])=>{if(d[k]!==undefined&&document.getElementById(id))document.getElementById(id).value=d[k]});}catch(e){}}
+const API_BASE = window.GURU_HEBAT_API_BASE || "";
+function setOnlineStatus(ok,text){const el=document.getElementById("onlineStatus");if(!el)return;el.innerHTML=`<span class="online-dot ${ok?"ok":"bad"}"></span>${escapeHtml(text)}`}
+async function backendHealth(){try{const r=await fetch(API_BASE+"/api/health",{cache:"no-store"});const d=await r.json();if(!r.ok||!d.ok)throw Error(d.error||"Backend tidak aktif");setOnlineStatus(true,`Terhubung • model backend: ${d.model}${d.openai_configured?" • OpenAI siap":" • API key belum dikonfigurasi"}`);return d}catch(e){setOnlineStatus(false,"Backend online belum terhubung. Jika aplikasi memakai Netlify Drop, gunakan deployment melalui Git atau Netlify CLI agar Functions ikut ter-deploy.");return null}}
+function renderValidation(v){const box=document.getElementById("sourceValidation");if(!box)return;box.innerHTML=`<b>Hasil validasi sumber — ${escapeHtml(v.checked_at||"")}</b>`+v.results.map(x=>`<div class="src"><b>${escapeHtml(x.name)}</b> — <span class="${x.status==='valid'?'status-ok':'status-warn'}">${escapeHtml(x.status)}</span><br><small>${escapeHtml(x.url)} • HTTP ${x.http_status??"-"}${x.title?" • "+escapeHtml(x.title):""}${x.error?" • "+escapeHtml(x.error):""}</small></div>`).join("")}
+async function validateOfficialSources(){const box=document.getElementById("sourceValidation");if(box)box.innerHTML="⏳ Memeriksa sumber resmi...";try{const r=await fetch(API_BASE+"/api/validate-sources",{method:"POST",headers:{"Content-Type":"application/json"},body:"{}"});const d=await r.json();if(!r.ok)throw Error(d.error||"Validasi gagal");renderValidation(d);setOnlineStatus(true,"Backend aktif • validasi sumber selesai");return d}catch(e){if(box)box.innerHTML=`<span class="status-warn">Validasi online gagal:</span> ${escapeHtml(e.message)}<br><small>Periksa deployment Netlify Functions dan konfigurasi server.</small>`;setOnlineStatus(false,"Backend belum tersedia");return null}}
+function identityForOnline(){return base()}
+async function generateOnlineAI(){
+  const health=await backendHealth(); if(!health || !health.openai_configured){alert("Backend belum siap. Pastikan backend berjalan dan OPENAI_API_KEY sudah dikonfigurasi.");return}
+  const target=document.getElementById("promptTarget").value, mode=document.getElementById("promptMode").value;
+  const prompt=document.getElementById("promptOutput").value || masterPrompt(target,mode,base());
+  const out=document.getElementById("onlineOutput"); out.style.display="block"; out.innerHTML="<p>⏳ Mesin validasi sumber dan OpenAI sedang mengeksekusi hasil tanpa bertanya kembali...</p>";
+  showTab("prompt");
+  try{
+    const r=await fetch(API_BASE+"/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt,target,mode,identity:identityForOnline(),validate_sources:true})});
+    const d=await r.json(); if(!r.ok)throw Error(d.error||"Eksekusi OpenAI gagal");
+    out.innerHTML=`<h2>Hasil Eksekusi Online</h2><div class="sourcebox"><b>Model:</b> ${escapeHtml(d.model)}<br><b>Status sumber:</b> validasi backend telah dijalankan.</div><div style="white-space:pre-wrap">${escapeHtml(d.output||"")}</div>`;
+    if(d.source_validation)renderValidation(d.source_validation);
+  }catch(e){out.innerHTML=`<div class="notice"><b>Eksekusi gagal.</b><br>${escapeHtml(e.message)}<br><small>Data lokal dan Prompt OpenAI tetap aman; Anda dapat kembali menggunakan mode offline.</small></div>`}
+}
+function generatePrompt(){const d=base();document.getElementById("promptOutput").value=masterPrompt(document.getElementById("promptTarget").value,document.getElementById("promptMode").value,d)}
+function promptFor(target){document.getElementById("promptTarget").value=target;showTab("prompt");generatePrompt();document.getElementById("promptOutput").focus()}
+function copyPrompt(){const el=document.getElementById("promptOutput");el.select();el.setSelectionRange(0,999999);navigator.clipboard?.writeText(el.value).then(()=>alert("Master Prompt berhasil disalin."),()=>{document.execCommand("copy");alert("Master Prompt berhasil disalin.")})}
+function downloadPrompt(){const d=base(),target=document.getElementById("promptTarget").value;const name="Master_Prompt_Guru_Hebat_"+target+".txt";const blob=new Blob([document.getElementById("promptOutput").value],{type:"text/plain;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+
+function header(d,title){return `<h1>${title}</h1><table><tr><td><b>Nama Guru</b></td><td class="teacher">${escapeHtml(d.guru)}</td><td><b>NIP</b></td><td>${escapeHtml(d.nip||"-")}</td></tr><tr><td><b>Satuan Pendidikan</b></td><td>${escapeHtml(d.sekolah)}</td><td><b>Mata Pelajaran</b></td><td>${escapeHtml(d.mapel)}</td></tr><tr><td><b>Kelas/Fase/Semester</b></td><td>${escapeHtml(d.kelas)}</td><td><b>Alokasi Waktu</b></td><td>${escapeHtml(d.alokasi)}</td></tr></table>`}
+function sign(d){return `<div class="signature"><div><p>Mengetahui,<br>Kepala Sekolah</p><br><br><p class="principal">${escapeHtml(d.kepala)}</p><p>NIP. ${escapeHtml(d.nipKepala||"-")}</p></div><div><p>${escapeHtml(d.tempat||"................")}, ${escapeHtml(d.tanggal)}</p><p>Guru</p><br><br><p class="teacher">${escapeHtml(d.guru)}</p><p>NIP. ${escapeHtml(d.nip||"-")}</p></div></div>`}
+function generateAll(){
+ const d=base(); if(!d.guru||!d.sekolah||!d.mapel||!d.kelas||!d.materi||!d.submateri||!d.tp||!d.alokasi||!d.kepala){alert("Mohon lengkapi identitas bertanda * terlebih dahulu.");return}
+ state=d;
+ document.querySelectorAll(".result").forEach(x=>x.style.display="block");
+ document.getElementById("modulDoc").innerHTML=modul(d);
+ document.getElementById("bahanDoc").innerHTML=bahan(d);
+ document.getElementById("lkpdDoc").innerHTML=lkpd(d);
+ document.getElementById("soalDoc").innerHTML=soal(d);
+ document.getElementById("mpiDoc").innerHTML=mpiPreview(d);
+ showTab("modul");
+}
+function modul(d){const tps=d.tp.split(/\n+/).map(x=>x.trim()).filter(Boolean);const tpList=tps.length?tps.map(x=>`<li>${escapeHtml(x)}</li>`).join(""):"<li>TP belum diisi.</li>";return header(d,"MODUL AJAR / RPP")+
+`<h2>A. INFORMASI UMUM</h2><table><tr><td><b>Nama Penyusun</b></td><td class="teacher">${escapeHtml(d.guru)}</td></tr><tr><td><b>Nama Sekolah</b></td><td>${escapeHtml(d.sekolah)}</td></tr><tr><td><b>Mata Pelajaran</b></td><td>${escapeHtml(d.mapel)}</td></tr><tr><td><b>Fase/Semester/Kelas</b></td><td>${escapeHtml(d.kelas)}</td></tr><tr><td><b>Materi</b></td><td>${escapeHtml(d.materi)}</td></tr><tr><td><b>Sub Materi</b></td><td>${escapeHtml(d.submateri)}</td></tr><tr><td><b>Alokasi Waktu</b></td><td>${escapeHtml(d.alokasi)}</td></tr></table>
+<h2>B. IDENTIFIKASI</h2><p><b>Kompetensi awal:</b> Disusun berdasarkan kebutuhan awal peserta didik dan konteks materi yang dipilih.</p><p><b>Karakteristik/dukungan peserta didik:</b> ${escapeHtml(d.mbk)}</p>
+<h2>C. KOMPETENSI</h2><p><b>Capaian Pembelajaran (CP):</b> <span class="source">Pencocokan CP dari sumber resmi Rumah Pendidikan/Kemendikdasmen akan dilakukan pada mode online/backend. Versi offline ini tidak melakukan klaim sinkronisasi live.</span></p><p><b>Tujuan Pembelajaran (TP):</b></p><ol>${tpList}</ol><p><b>Alur Tujuan Pembelajaran (ATP):</b> <span class="source">Akan diturunkan/dicocokkan secara otomatis dari TP melalui sumber resmi pada versi online.</span></p><div class="sourcebox source">Sumber acuan: Rumah Pendidikan/Kemendikdasmen. Status: mode offline; sinkronisasi CP/ATP belum live.</div>
+<h2>D. DESAIN PEMBELAJARAN</h2><table><tr><td><b>Model/Pendekatan</b></td><td>${escapeHtml(d.pendekatan)}</td></tr><tr><td><b>Materi/Topik</b></td><td>${escapeHtml(d.materi)} — ${escapeHtml(d.submateri)}</td></tr><tr><td><b>Media/Fasilitas</b></td><td>${escapeHtml(d.fasilitas)}</td></tr></table><p><b>Pembelajaran Mendalam:</b> berkesadaran (mindful), bermakna (meaningful), dan menggembirakan (joyful).</p>
+<h2>E. KEGIATAN PEMBELAJARAN</h2><table><tr><th>Tahap</th><th>Aktivitas Guru dan Peserta Didik</th><th>Alokasi</th></tr><tr><td>Pendahuluan</td><td>Salam, doa, pengecekan kehadiran, apersepsi, motivasi, penyampaian TP dan acuan belajar.</td><td>10%</td></tr><tr><td>Kegiatan Inti</td><td>Eksplorasi materi, diskusi/aktivitas sesuai ${escapeHtml(d.pendekatan)}, kolaborasi, praktik, presentasi, umpan balik, dan penguatan.</td><td>70%</td></tr><tr><td>Penutup</td><td>Kesimpulan, refleksi, tindak lanjut, informasi pembelajaran berikutnya, doa dan salam.</td><td>20%</td></tr></table>
+<h2>F. ASESMEN</h2><ul><li>Asesmen awal: pertanyaan pemantik dan cek pemahaman awal.</li><li>Asesmen formatif: observasi, diskusi, produk/unjuk kerja dan umpan balik.</li><li>Asesmen sumatif: ${escapeHtml(d.jenis)} sebanyak ${d.jumlah} soal.</li></ul>
+<h2>G. PENGAYAAN DAN REMEDIAL</h2><p><b>Pengayaan:</b> tugas lanjutan yang memperluas penerapan materi.</p><p><b>Remedial:</b> pendampingan bertahap, penjelasan sederhana, contoh konkret, dan latihan tambahan sesuai kesulitan peserta didik.</p>
+<h2>H. REFLEKSI</h2><p>Peserta didik merefleksikan hal yang dipahami, hal yang masih sulit, dan manfaat materi. Guru merefleksikan ketercapaian TP dan tindak lanjut.</p>
+<h2>I. GLOSARIUM</h2><p>Istilah penting disesuaikan dengan materi dan sub materi yang dipilih.</p>
+<h2>J. DAFTAR PUSTAKA</h2><p class="source">Sumber resmi kurikulum/Rumah Pendidikan dan buku teks yang digunakan guru.</p>${sign(d)}`}
+function bahan(d){return header(d,"BAHAN AJAR")+
+`<h2>1. Pengantar</h2><p>Bahan ajar ini membantu peserta didik memahami <b>${escapeHtml(d.materi)}</b> melalui pengalaman belajar yang kontekstual, berkesadaran, bermakna, dan menggembirakan.</p>
+<h2>2. Tujuan</h2><p>Setelah mempelajari bahan ini, peserta didik dapat menjelaskan gagasan utama, memberikan contoh, melakukan aktivitas, dan menyimpulkan manfaat materi.</p>
+<h2>3. Materi Inti</h2><h3>${escapeHtml(d.materi)}</h3><p>Mulailah dari pengalaman yang dekat dengan peserta didik. Sajikan konsep secara sederhana, berikan contoh, kemudian ajak peserta didik mencoba atau mendiskusikannya.</p><ul><li>Konsep kunci pertama sesuai materi.</li><li>Contoh penerapan dalam kehidupan sehari-hari.</li><li>Istilah penting dan maknanya.</li><li>Pesan/karakter yang dapat dipraktikkan.</li></ul>
+<h2>4. Aktivitas Belajar</h2><ol><li>Amati sumber/media yang disediakan guru.</li><li>Diskusikan pertanyaan pemantik bersama teman.</li><li>Kerjakan aktivitas praktik pada LKPD.</li><li>Presentasikan hasil dan dengarkan umpan balik.</li></ol>
+<h2>5. Rangkuman</h2><p>Materi ${escapeHtml(d.materi)} dipahami bukan hanya sebagai pengetahuan, tetapi sebagai bekal untuk berpikir, bersikap, dan bertindak dalam kehidupan nyata.</p>
+<h2>6. Refleksi Peserta Didik</h2><p>Apa hal baru yang saya pahami? Apa yang masih membingungkan? Bagaimana saya akan menerapkan pembelajaran ini?</p>
+${sign(d)}<div class="sourcebox source">Sumber: Kemendikdasmen/Rumah Pendidikan serta bahan rujukan guru.</div>`}
+function lkpd(d){return header(d,"LEMBAR KERJA PESERTA DIDIK (LKPD)")+
+`<h2>A. Petunjuk</h2><ol><li>Bacalah tujuan dan instruksi dengan teliti.</li><li>Kerjakan secara mandiri atau berkelompok sesuai arahan guru.</li><li>Gunakan bahasa yang sopan dan bukti yang relevan.</li><li>Presentasikan hasil pekerjaan.</li></ol>
+<h2>B. Aktivitas 1 — Amati dan Pahami</h2><p>Amati gambar, teks, demonstrasi, atau sumber yang disediakan guru tentang <b>${escapeHtml(d.materi)}</b>. Tuliskan tiga hal yang kamu temukan.</p><table><tr><th>No.</th><th>Temuan</th><th>Penjelasan</th></tr><tr><td>1</td><td></td><td></td></tr><tr><td>2</td><td></td><td></td></tr><tr><td>3</td><td></td><td></td></tr></table>
+<h2>C. Aktivitas 2 — Diskusikan</h2><p>Jawab bersama kelompok: Apa hubungan materi dengan kehidupan sehari-hari? Berikan satu contoh nyata.</p><div style="height:100px;border:1px solid #aaa"></div>
+<h2>D. Aktivitas 3 — Terapkan</h2><p>Buat produk/jawaban/unjuk kerja sederhana yang menunjukkan pemahamanmu terhadap materi.</p><div style="height:120px;border:1px solid #aaa"></div>
+<h2>E. Refleksi</h2><table><tr><th>Pernyataan</th><th>Jawaban</th></tr><tr><td>Hal yang paling saya pahami</td><td></td></tr><tr><td>Hal yang perlu saya pelajari lagi</td><td></td></tr><tr><td>Manfaat pembelajaran bagi saya</td><td></td></tr></table>${sign(d)}`}
+function soal(d){
+ let rows="",qs="";
+ for(let i=1;i<=d.jumlah;i++){rows+=`<tr><td>${i}</td><td>${escapeHtml(d.materi)}</td><td>Menganalisis/memahami konsep</td><td>${i%3===0?"C4":"C2"}</td><td>${escapeHtml(d.jenis)}</td></tr>`;
+ if(d.jenis==="Pilihan Ganda") qs+=`<p><b>${i}.</b> Manakah pernyataan yang paling tepat tentang ${escapeHtml(d.materi)}?</p><p>a. Pernyataan A &nbsp;&nbsp; b. Pernyataan B &nbsp;&nbsp; c. Pernyataan C &nbsp;&nbsp; d. Pernyataan D</p>`;
+ else if(d.jenis==="Benar-Salah") qs+=`<p><b>${i}.</b> Pernyataan berikut berkaitan dengan ${escapeHtml(d.materi)}. Tentukan Benar atau Salah dan berikan alasan singkat.</p>`;
+ else if(d.jenis==="Menjodohkan") qs+=`<p><b>${i}.</b> Jodohkan konsep pada materi ${escapeHtml(d.materi)} dengan penjelasan yang tepat.</p>`;
+ else if(d.jenis==="Uraian") qs+=`<p><b>${i}.</b> Jelaskan dengan bahasamu sendiri hal penting yang kamu pahami tentang ${escapeHtml(d.materi)} dan berikan contoh penerapannya.</p>`;
+ else qs+=`<p><b>${i}.</b> Tuliskan jawaban singkat yang tepat berkaitan dengan ${escapeHtml(d.materi)}.</p>`;
+ }
+ return header(d,"KISI-KISI SOAL DAN SOAL")+
+ `<h2>A. Kisi-kisi</h2><table><tr><th>No.</th><th>Materi</th><th>Indikator</th><th>Level</th><th>Bentuk</th></tr>${rows}</table><h2>B. Soal</h2>${qs}<h2>C. Kunci/Pedoman Penskoran</h2><p>Kunci dan pedoman penskoran perlu divalidasi guru berdasarkan CP/TP, karakteristik kelas, dan materi yang benar-benar diajarkan. Untuk pilihan ganda, tetapkan satu jawaban paling tepat; untuk uraian/isian, gunakan rubrik yang mempertimbangkan ketepatan, kelengkapan, dan alasan.</p>${sign(d)}`}
+function mpiPreview(d){return `<div class="panel" style="margin:0"><h2>MPI: ${escapeHtml(d.materi)}</h2><p>Media Pembelajaran Interaktif sederhana yang dibuat dari modul: <b>${escapeHtml(d.pendekatan)}</b>.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-primary" onclick="mpiAction('mulai')">Mulai</button><button class="btn btn-light" onclick="mpiAction('tujuan')">Tujuan</button><button class="btn btn-light" onclick="mpiAction('materi')">Materi</button><button class="btn btn-green" onclick="mpiAction('kuis')">Kuis</button></div><div id="mpiScreen" style="margin-top:15px;padding:20px;border:1px solid #ccd7e2;border-radius:10px;background:#f8fbff">Klik salah satu tombol untuk menjalankan MPI.</div></div>`}
+function mpiAction(a){const s=document.getElementById("mpiScreen");const d=state;if(a==="mulai")s.innerHTML=`<h3>Selamat belajar!</h3><p>Hari ini kita belajar <b>${escapeHtml(d.materi)}</b>. Siapkan fokus, rasa ingin tahu, dan semangat.</p>`;if(a==="tujuan")s.innerHTML=`<h3>Tujuan</h3><p>Kamu dapat menjelaskan, menerapkan, dan merefleksikan ${escapeHtml(d.materi)}.</p>`;if(a==="materi")s.innerHTML=`<h3>Materi</h3><p>Pelajari konsep utama, contoh, aktivitas, dan penerapan ${escapeHtml(d.materi)}. Hubungkan dengan pengalamanmu.</p>`;if(a==="kuis")s.innerHTML=`<h3>Kuis</h3><p>Mana yang paling tepat untuk menjelaskan ${escapeHtml(d.materi)}?</p><button class="btn btn-light" onclick="this.parentElement.innerHTML='<h3>Bagus!</h3><p>Periksa kembali alasanmu dan lanjutkan ke refleksi.</p>'">A</button> <button class="btn btn-light">B</button> <button class="btn btn-light">C</button>`}
+function copyDoc(id){navigator.clipboard.writeText(document.getElementById(id).innerText).then(()=>alert("Konten berhasil disalin."))}
+function printDoc(id){const w=window.open("","_blank");w.document.write(`<html><head><title>Cetak</title><style>body{font-family:Calibri,Arial;font-size:12pt;color:#000}table{width:100%;border-collapse:collapse}td,th{border:1px solid #777;padding:6px;vertical-align:top}.teacher,.principal{font-weight:700}.source{font-style:italic}@page{size:A4;margin:18mm}</style></head><body>${document.getElementById(id).innerHTML}</body></html>`);w.document.close();w.print()}
+function openSources(){["https://rumah.pendidikan.go.id/","https://guru.kemendikdasmen.go.id/","https://buku.kemendikdasmen.go.id/","https://siap-online.com/","https://puskesjar.kemdikbud.go.id/","https://www.kemendikdasmen.go.id/"].forEach(u=>window.open(u,"_blank"))}
+function xmlEsc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function htmlToDocxText(id){return document.getElementById(id).innerText}
+function crc32(buf){let c=~0;for(let i=0;i<buf.length;i++){c^=buf[i];for(let k=0;k<8;k++)c=(c>>>1)^((c&1)?0xEDB88320:0)}return (~c)>>>0}
+function u16(n){return new Uint8Array([n&255,(n>>>8)&255])}function u32(n){return new Uint8Array([n&255,(n>>>8)&255,(n>>>16)&255,(n>>>24)&255])}
+function concat(arrs){let n=arrs.reduce((a,b)=>a+b.length,0),o=new Uint8Array(n),p=0;for(const a of arrs){o.set(a,p);p+=a.length}return o}
+function zipStore(files){const enc=new TextEncoder(),parts=[],central=[];let off=0;for(const [name,dataStr] of files){const nb=enc.encode(name),db=typeof dataStr==="string"?enc.encode(dataStr):dataStr,crc=crc32(db),lh=concat([u32(0x04034b50),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(db.length),u32(db.length),u16(nb.length),u16(0),nb,db]);parts.push(lh);const ch=concat([u32(0x02014b50),u16(20),u16(20),u16(0),u16(0),u16(0),u16(0),u32(crc),u32(db.length),u32(db.length),u16(nb.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(off),nb]);central.push(ch);off+=lh.length}const cd=concat(central),body=concat(parts),end=concat([u32(0x06054b50),u16(0),u16(0),u16(files.length),u16(files.length),u32(cd.length),u32(body.length),u16(0)]);return concat([body,cd,end])}
+function docxRun(text,bold=false,italic=false,size=24){
+  return `<w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:cs="Calibri"/>${bold?"<w:b/>":""}${italic?"<w:i/>":""}<w:sz w:val="${size}"/><w:szCs w:val="${size}"/></w:rPr><w:t xml:space="preserve">${xmlEsc(text==null?"":text)}</w:t></w:r>`;
+}
+function docxInline(node,bold=false,italic=false){
+  if(!node)return "";
+  if(node.nodeType===3)return docxRun(node.nodeValue,bold,italic);
+  if(node.nodeType!==1)return "";
+  const tag=node.tagName.toLowerCase();
+  if(tag==="br")return "<w:br/>";
+  const b=bold||tag==="b"||tag==="strong";
+  const i=italic||tag==="i"||tag==="em";
+  return Array.from(node.childNodes).map(n=>docxInline(n,b,i)).join("");
+}
+function docxParaRuns(node,opts={}){
+  const runs=Array.from(node.childNodes||[]).map(n=>docxInline(n)).join("")||docxRun(" ");
+  const size=opts.size||24;
+  const ppr=[];
+  if(opts.align)ppr.push(`<w:jc w:val="${opts.align}"/>`);
+  if(opts.before||opts.after||opts.line){
+    ppr.push(`<w:spacing${opts.before?` w:before="${opts.before}"`:""}${opts.after?` w:after="${opts.after}"`:""}${opts.line?` w:line="${opts.line}" w:lineRule="auto"`:""}/>`);
+  }
+  if(opts.left||opts.hanging)ppr.push(`<w:ind${opts.left?` w:left="${opts.left}"`:""}${opts.hanging?` w:hanging="${opts.hanging}"`:""}/>`);
+  return `<w:p>${ppr.length?`<w:pPr>${ppr.join("")}</w:pPr>`:""}${runs}</w:p>`;
+}
+function docxParagraphFromCell(td){
+  const children=Array.from(td.childNodes||[]);
+  if(!children.length)return "<w:p>"+docxRun(" ")+"</w:p>";
+  const blocks=[];
+  let inlineNodes=[];
+  const flush=()=>{if(inlineNodes.length){blocks.push(docxParaFromNodes(inlineNodes));inlineNodes=[];}};
+  for(const n of children){
+    if(n.nodeType===1 && n.tagName.toLowerCase()==="table"){
+      flush(); blocks.push(docxTable(n));
+    }else if(n.nodeType===1 && /^(p|h[1-6]|ul|ol|div)$/.test(n.tagName.toLowerCase())){
+      flush(); blocks.push(docxBlock(n));
+    }else inlineNodes.push(n);
+  }
+  flush();
+  return blocks.join("")||"<w:p>"+docxRun(" ")+"</w:p>";
+}
+function docxParaFromNodes(nodes,opts={}){
+  const runs=nodes.map(n=>docxInline(n)).join("")||docxRun(" ");
+  const ppr=[];
+  if(opts.align)ppr.push(`<w:jc w:val="${opts.align}"/>`);
+  if(opts.before||opts.after||opts.line)ppr.push(`<w:spacing${opts.before?` w:before="${opts.before}"`:""}${opts.after?` w:after="${opts.after}"`:""}${opts.line?` w:line="${opts.line}" w:lineRule="auto"`:""}/>`);
+  if(opts.left||opts.hanging)ppr.push(`<w:ind${opts.left?` w:left="${opts.left}"`:""}${opts.hanging?` w:hanging="${opts.hanging}"`:""}/>`);
+  return `<w:p>${ppr.length?`<w:pPr>${ppr.join("")}</w:pPr>`:""}${runs}</w:p>`;
+}
+function docxTable(tbl){
+  const rows=Array.from(tbl.rows||[]).map(tr=>{
+    const cells=Array.from(tr.cells||[]).map(td=>{
+      const tcPr=`<w:tcPr><w:tcMar><w:top w:w="80" w:type="dxa"/><w:left w:w="100" w:type="dxa"/><w:bottom w:w="80" w:type="dxa"/><w:right w:w="100" w:type="dxa"/></w:tcMar></w:tcPr>`;
+      return `<w:tc>${tcPr}${docxParagraphFromCell(td)}</w:tc>`;
+    }).join("");
+    return `<w:tr>${cells}</w:tr>`;
+  }).join("");
+  return `<w:tbl><w:tblPr><w:tblW w:w="0" w:type="auto"/><w:tblLayout w:type="autofit"/><w:tblBorders><w:top w:val="single" w:sz="6"/><w:left w:val="single" w:sz="6"/><w:bottom w:val="single" w:sz="6"/><w:right w:val="single" w:sz="6"/><w:insideH w:val="single" w:sz="6"/><w:insideV w:val="single" w:sz="6"/></w:tblBorders></w:tblPr>${rows}</w:tbl>`;
+}
+function docxBlock(node){
+  if(!node)return "";
+  if(node.nodeType===3){
+    return node.nodeValue.trim()?docxParaFromNodes([node]):"";
+  }
+  if(node.nodeType!==1)return "";
+  const t=node.tagName.toLowerCase();
+  if(t==="table")return docxTable(node);
+  if(/^h[1-6]$/.test(t)){
+    const level=parseInt(t.substring(1),10);
+    const size=level===1?32:level===2?28:24;
+    return docxParaFromNodes(Array.from(node.childNodes),{align:level===1?"center":undefined,before:level===1?0:120,after:level===1?180:100});
+  }
+  if(t==="p")return docxParaRuns(node,{after:80});
+  if(t==="div")return Array.from(node.childNodes).map(docxBlock).join("");
+  if(t==="ul"||t==="ol"){
+    let n=0;
+    return Array.from(node.children).map(li=>{
+      const prefix=t==="ol"?`${++n}. `:"• ";
+      return docxParaFromNodes([{nodeType:3,nodeValue:prefix},...Array.from(li.childNodes)],{left:540,hanging:270,after:40});
+    }).join("");
+  }
+  if(t==="br")return "<w:p/>";
+  return docxParaFromNodes(Array.from(node.childNodes),{after:80});
+}
+function docxXmlFromHtml(html){
+  const root=new DOMParser().parseFromString(`<div>${html}</div>`,"text/html").body.firstElementChild;
+  const body=Array.from(root.childNodes).map(docxBlock).join("");
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1021" w:right="1021" w:bottom="1021" w:left="1021"/><w:cols w:num="1"/></w:sectPr></w:body></w:document>`;
+}
+function downloadDocx(id,name){
+  const html=document.getElementById(id).innerHTML;
+  const files=[
+    ["[Content_Types].xml",`<?xml version="1.0" encoding="UTF-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>`],
+    ["_rels/.rels",`<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`],
+    ["word/_rels/document.xml.rels",`<?xml version="1.0" encoding="UTF-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`],
+    ["word/styles.xml",`<?xml version="1.0" encoding="UTF-8"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:cs="Calibri"/><w:sz w:val="24"/><w:szCs w:val="24"/></w:rPr></w:rPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:cs="Calibri"/><w:sz w:val="24"/><w:szCs w:val="24"/></w:rPr></w:style></w:styles>`],
+    ["word/document.xml",docxXmlFromHtml(html)]
+  ];
+  const blob=new Blob([zipStore(files)],{type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name+".docx";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function mpiHtml(d){
+  const safeMateri=escapeHtml(d.materi), safeMapel=escapeHtml(d.mapel), safeKelas=escapeHtml(d.kelas);
+  return `<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MPI - ${safeMateri}</title><style>
+  body{font-family:Calibri,Arial;margin:0;background:#eef5fb;color:#111}.wrap{max-width:850px;margin:auto;padding:22px}
+  .card{background:white;border-radius:16px;padding:22px;box-shadow:0 8px 30px #0001;margin:12px 0}
+  .btn{padding:11px 15px;border:0;border-radius:9px;margin:4px;cursor:pointer;background:#0b5cab;color:white}.light{background:#e9eef5;color:#111}
+  </style></head><body><div class="wrap"><div class="card">
+  <h1>Media Pembelajaran Interaktif</h1><p><b>${safeMateri}</b></p><p>${safeMapel} • ${safeKelas}</p>
+  <button class="btn" onclick="show('mulai')">Mulai</button>
+  <button class="btn light" onclick="show('tujuan')">Tujuan</button>
+  <button class="btn light" onclick="show('materi')">Materi</button>
+  <button class="btn" onclick="show('kuis')">Kuis</button>
+  <div id="s" class="card">Pilih menu untuk mulai.</div></div></div>
+  <scr`+`ipt>
+  function show(a){
+    let s=document.getElementById('s');
+    if(a==='mulai')s.innerHTML='<h2>Selamat belajar!</h2><p>Fokus dan nikmati proses belajar.</p>';
+    if(a==='tujuan')s.innerHTML='<h2>Tujuan</h2><p>Memahami dan menerapkan materi pembelajaran.</p>';
+    if(a==='materi')s.innerHTML='<h2>Materi</h2><p>${safeMateri}: pahami konsep, contoh, aktivitas, dan penerapannya.</p>';
+    if(a==='kuis')s.innerHTML='<h2>Kuis</h2><p>Apakah kamu sudah memahami materi?</p><button class="btn" onclick="s.innerHTML=\\'<h2>Hebat!</h2><p>Lanjutkan refleksi.</p>\\'">Sudah</button><button class="btn light">Belum</button>';
+  }
+  </scr`+`ipt></body></html>`;
+}
+function downloadMPI(){const blob=new Blob([mpiHtml(state)],{type:"text/html;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="MPI_"+(state.materi||"Pembelajaran").replace(/[^\w-]+/g,"_")+".html";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function openMPI(){const w=window.open();w.document.write(mpiHtml(state));w.document.close()}
+document.getElementById("tanggal").value=new Date().toISOString().slice(0,10);
+showTab("home");
+window.addEventListener("load",()=>{loadInputs();backendHealth();document.getElementById("tanggal").value=document.getElementById("tanggal").value||new Date().toISOString().slice(0,10);});
+</script>
+</body></html>

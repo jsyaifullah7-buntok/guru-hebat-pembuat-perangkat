@@ -1,0 +1,9 @@
+{
+  "name": "guru-hebat-netlify",
+  "version": "16.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo Guru Hebat V16: Netlify Functions ready"
+  }
+}
